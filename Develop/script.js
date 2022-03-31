@@ -30,9 +30,11 @@ function askLength() {
   pwLength=window.prompt("Please choose a password length between 8 and 128 characters");
   console.log(pwLength);
   if(pwLength < 8) {
+    window.alert("Please make sure you choose a length between 8 and 128 characters");
     askLength();
   }
   else if(pwLength > 128) {
+    window.alert("Please make sure you choose a length between 8 and 128 characters");
     askLength();
   }
   else {
