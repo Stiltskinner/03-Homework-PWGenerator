@@ -7,7 +7,7 @@ var numbers = "0123456789";
 var isNumbers = true;
 var uppercaseletters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var isUpperCase = true;
-var symbols = "!@#$%^&*()";
+var symbols = "!@#$%^&*()[],./?;:{}";
 var isSymbols = true;
 var allchars = ""
 var pwLength = 0;
@@ -36,12 +36,52 @@ function askCharacters() {
    isSymbols=window.confirm("Would you like to use symbols?");
    if(isLowerCase && isUpperCase && isNumbers && isSymbols){
      allchars=lowercaseletters+uppercaseletters+numbers+symbols;
-     console.log(allchars);
+      }
+      else if(isLowerCase && isUpperCase && isNumbers) {
+        allchars=lowercaseletters+uppercaseletters+numbers;
+      }
+      else if(isLowerCase && isUpperCase && isSymbols) {
+        allchars=lowercaseletters+uppercaseletters+symbols;
+      }
+      else if(isLowerCase && isNumbers && isSymbols) {
+        allchars=lowercaseletters+numbers+symbols;
+      }
+      else if(isUpperCase && isNumbers && isSymbols) {
+        allchars=uppercaseletters+numbers+symbols;
+      }      
+      else if(isLowerCase && isUpperCase) {
+        allchars=lowercaseletters+uppercaseletters;
+      }
+      else if(isLowerCase &&  isSymbols) {
+        allchars=lowercaseletters + symbols;
+      }
+      else if(isLowerCase &&  isNumbers) {
+        allchars=lowercaseletters + numbers;
+      }
+      else if(isUpperCase && isNumbers) {
+        allchars=uppercaseletters + numbers;
+      }
+      else if(isUpperCase && isSymbols) {
+        allchars=uppercaseletters + symbols;
+      }
+      else if(isSymbols && isNumbers) {
+        allchars= symbols+numbers;
+      }
+      else if(isLowerCase) {
+        allchars=lowercaseletters;
+      }
+      else if(isUpperCase) {
+        allchars=uppercaseletters;
+      }
+      else if(isNumbers) {
+        allchars=numbers;
+      }
+      else if(isSymbols) {
+        allchars=symbols;
       }
    else {
      return
    }
-  
 }
 
 function generatePassword() {
@@ -51,16 +91,24 @@ function generatePassword() {
   }
 }
   function writePassword() {
-    var password = generatePassword();
+    // var password = generatePassword();
     var passwordText = document.querySelector("#password");
   
     passwordText.value = password;
   
   }
+
+  function clearPassword() {
+    password = ""
+    var passwordText = document.querySelector("#password");
+    passwordText.value = password;
+  }
   
   // Add event listener to generate button
+  generateBtn.addEventListener("click", clearPassword);
   generateBtn.addEventListener("click", askLength);
   generateBtn.addEventListener("click", askCharacters);
+  generateBtn.addEventListener("click", generatePassword);
   generateBtn.addEventListener("click", writePassword);
 
 
